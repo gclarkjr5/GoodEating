@@ -56,3 +56,9 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Heroku package.json.swp
+*.swp
+
+# Test folder
+test/

@@ -3,13 +3,11 @@
 const _ = require(`lodash`);
 const yelp = require(`yelp-fusion`);
 const Token = require(`./yelpToken.js`);
-const jsonfile = require(`jsonfile`);
-
 const uni = require(`./uniData`);
 
-module.exports = callback => {
+module.exports = (state, callback) => {
     let fullSet = [];
-    uni(unis => {
+    uni(state, unis => {
         for (i = 0; i < unis.length; i++) {
             let lat = unis[i][`location.lat`]
             let lon = unis[i][`location.lon`]
@@ -34,17 +32,9 @@ module.exports = callback => {
                         }
                     })
                     fullSet.push(fullFilt)
-                    // console.log(fullSet.length)
                     if (fullSet.length == unis.length) {
                         let fullFlat = _.flatten(fullSet)
                         callback(fullFlat)
-                        // jsonfile.writeFile(`ratingData.json`, fullFlat, { spaces: 2 }, err => {
-                        //     if (err) {
-                        //         console.log(err)
-                        //     } else {
-                        //         // callback(fullFlat)
-                        //     }
-                        // })
                     }
                 }).catch(e => {
                     console.log(e)
