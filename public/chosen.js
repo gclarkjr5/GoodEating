@@ -10,7 +10,7 @@ function fillChosen() {
             // console.log(params)
             $.ajax({
                 type: "POST",
-                url: `http://localhost:5000/getStateData`,
+                url: `/getStateData`,
                 data: params,
                 success: results => {
                     initMap(results)
